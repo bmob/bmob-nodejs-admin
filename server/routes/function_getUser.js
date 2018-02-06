@@ -8,7 +8,7 @@ BC.Function.define("getUser",
         var objectId = request.query.objectId;
 
         db.getUserByObjectId({
-          "objectId":objectId           //记录的objectId
+            "objectId":objectId           //记录的objectId
         },function(err,data){           //回调函数
             response.send(JSON.parse(data));
         });

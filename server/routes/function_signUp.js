@@ -10,10 +10,10 @@ BC.Function.define("signUp",
         var password = utils.md5(request.body.password);
 
         db.userSignUp({
-          "data":{
-            "username":username,
-            "password":password
-          }
+            "data":{
+                "username":username,
+                "password":password
+            }
         },function(err,data){         //回调函数
             response.send(JSON.parse(data));
         });

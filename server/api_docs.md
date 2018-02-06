@@ -96,7 +96,7 @@ JSON示例
 
 #### 地址
 
-http://127.0.0.1:8080/userList
+http://127.0.0.1:8080/getUserList
 
 #### 请求
 
