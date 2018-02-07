@@ -29,7 +29,7 @@ service.interceptors.response.use(
   * code为非20000是抛错 可结合自己业务进行修改
   */
     const res = response.data
-    console.log(res.code,'999')
+    console.log(res.code, '999')
     if (res.code !== undefined) {
       Message({
         message: res.error,
