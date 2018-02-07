@@ -43,15 +43,16 @@
                 console.log(val);
             },
             fetchData() {
-      this.listLoading = true
-      getList(this.listQuery).then(response => {
-        this.list = response.results
-        this.listLoading = false
-      })
-    },
+                this.listLoading = true
+                getList(this.listQuery).then(response => {
+                    console.log(response.results);
+                    this.list = response.results
+                    this.listLoading = false
+                })
+            },
             kkk() {
                 console.log('val');
-      
+
             }
         },
         created() {

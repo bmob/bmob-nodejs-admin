@@ -1,4 +1,3 @@
-
 var domain = require('domain');
 var express = require('express');
 var app = express();
@@ -7,63 +6,36 @@ var routesIndex = require('./routes/index');
 var xml2js = require('xml2js');
 var utils = require('./lib/utils');
 var getBody = require('raw-body');
-var errorhandler = require('errorhandler')
-
-// 解析微信的 xml 数据
-var xmlBodyParser = function (req, res, next) {
-
-  if (req._body) return next();
-  req.body = req.body || {};
-
-  // ignore GET
-  if ('GET' == req.method || 'HEAD' == req.method) return next();
-
-  // check Content-Type
-  if ('text/xml' != utils.mime(req)) return next();
-
-  // flag as parsed
-  req._body = true;
-
-  // parse
-  getBody(req, {
-    limit: '5mb',
-    length: req.headers['content-length'],
-    encoding: 'utf8'
-  }, function (err, buf) {
-    if (err) return next(err);
-    var first = buf.trim()[0];
-
-    if (0 == buf.length) {
-      return next(utils.error(400, 'invalid xml, empty body'));
-    }
-
-    xml2js.parseString(buf,  {explicitArray : false}, function(err, json) {
-      if (err) {
-          err.status = 400;
-          return next(utils.error(400, 'parse xml err:'+err));
-      } else {
-          req.body = json;
-          next();
-      }
-    });
-
-  });
-
-
-};
+var errorhandler = require('errorhandler');
+var userRoutes = require('./api/user');
 
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(xmlBodyParser);
 app.use(require('express-domain-middleware'));
 app.use('/', routesIndex);
+app.use('/', userRoutes);
 
 // app.use(function errorHandler(err, req, res, next) {
 
 //   res.status(500).send("there is an error in callback function");
 
 // });
+
+
+app.all('*',function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
+  res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
+
+  if (req.method == 'OPTIONS') {
+    res.send(200); /让options请求快速返回/
+  }
+  else {
+    next();
+  }
+});
+
 app.use(errorhandler());
 
 

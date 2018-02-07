@@ -96,7 +96,7 @@ JSON示例
 
 #### 地址
 
-http://127.0.0.1:8080/userList
+http://127.0.0.1:8080/users
 
 #### 请求
 
@@ -143,5 +143,120 @@ http://127.0.0.1:8080/userList
             "username": "3f83060cf7970e32"
         },
 	]
+}
+```
+
+- - -
+
+### 获取单个用户信息
+
+#### 地址
+
+http://127.0.0.1:8080/users/objectid
+
+#### 请求
+
+* 请求方式 GET
+
+#### 响应
+
+* 数据格式 JSON
+* 数据示例
+
+```json
+{
+    "createdAt": "2018-02-06 17:48:20",
+    "objectId": "c0b4c10053",
+    "updatedAt": "2018-02-07 10:03:52",
+    "username": "kokp"
+}
+```
+
+- - -
+
+### 修改用户信息(必须在header头设置sessionToken，登录返回的sessionToken)
+
+#### 地址
+
+http://127.0.0.1:8080/users/objectid
+
+### curl例子
+
+```
+curl -X PUT \
+  http://127.0.0.1:8080/users/c0b4c10053 \
+  -H 'content-type: application/x-www-form-urlencoded' \
+  -H 'sessiontoken: 2b1716cf40c1a9fc804dbba86e609c0e' \
+  -d username=koko
+```
+
+#### 请求
+
+* 请求方式 PUT
+* 数据格式 x-www-form-urlencoded
+* 请求参数
+
+- body
+```
+{
+  key1 : value1,
+  key2 : value2,
+  ...
+}
+```
+
+#### 响应
+
+* 数据格式 JSON
+* 数据示例
+
+JSON示例
+- 成功返回
+```json
+{
+    "updatedAt": "2018-02-07 10:03:52"
+}
+```
+
+- 失败返回
+```json
+{
+    "code": 202,
+    "error": "username 'kokp' already taken."
+}
+```
+
+- - -
+
+### 删除一个用户(必须在header头设置sessionToken，登录返回的sessionToken)
+
+#### 地址
+
+http://127.0.0.1:8080/users/objectid
+
+### curl例子
+
+```
+curl -X DELETE \
+  http://127.0.0.1:8080/users/c0b4c10053 \
+  -H 'content-type: application/x-www-form-urlencoded' \
+  -H 'sessiontoken: 2b1716cf40c1a9fc804dbba86e609c0e'
+```
+
+#### 请求
+
+* 请求方式 DELETE
+* 数据格式 x-www-form-urlencoded
+
+#### 响应
+
+* 数据格式 JSON
+* 数据示例
+
+JSON示例
+- 成功返回
+```json
+{
+    "msg": "ok"
 }
 ```
