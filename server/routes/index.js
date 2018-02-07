@@ -14,7 +14,7 @@ BC.initialize('39ee83f92ff3a195130596a4eaec5ddf', 'a1223fca87f5d229953817f5c2493
 var modules = BC.getModules(BC);
 
 router.post('/', function(request, response) {
-
+	response.header('Access-Control-Allow-Origin', '*');
 	var name = request.body._e;
 	require('./function_'+name);
   	/*
@@ -35,7 +35,7 @@ router.post('/', function(request, response) {
 });
 
 router.get('/:functions', function(request, response) {
-
+	response.header('Access-Control-Allow-Origin', '*');
 	var data  = request.params;
 	var name = data.functions;
 	require('./function_'+name);
@@ -55,7 +55,7 @@ router.get('/:functions', function(request, response) {
 });
 
 router.post('/:functions', function(request, response) {
-
+	response.header('Access-Control-Allow-Origin', '*');
 	var data  = request.params;
 	var name = data.functions;
 	require('./function_'+name);
@@ -71,5 +71,21 @@ router.post('/:functions', function(request, response) {
 	funcName(request,response,modules);
 
 });
+
+//allow custom header and CORS
+router.all('*',function (req, res, next) {
+	res.header('Access-Control-Allow-Origin', '*');
+	res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
+	res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
+  
+	if (req.method == 'OPTIONS') {
+	  res.sendStatus(200)
+	  res.send(200); /让options请求快速返回/
+	}
+	else {
+	  next();
+	}
+  });
+
 
 module.exports = router;

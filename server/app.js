@@ -52,6 +52,7 @@ var xmlBodyParser = function (req, res, next) {
 
 };
 
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(xmlBodyParser);
@@ -64,6 +65,8 @@ app.use('/', routesIndex);
 
 // });
 app.use(errorhandler());
+
+
 
 //把端口从3000改为80
 var server = app.listen(8080, function () {

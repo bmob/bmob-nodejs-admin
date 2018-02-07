@@ -1,4 +1,6 @@
 import Vue from 'vue'
+import Vuex from 'vuex'
+import api from './assets/js/api'
 
 import 'normalize.css/normalize.css'// A modern alternative to CSS resets
 
@@ -15,7 +17,9 @@ import store from './store'
 import '@/icons' // icon
 import '@/permission' // permission control
 
+Vue.use(api, Vuex)
 Vue.use(ElementUI, { locale })
+
 
 Vue.config.productionTip = false
 

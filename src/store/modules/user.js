@@ -31,8 +31,14 @@ const user = {
       return new Promise((resolve, reject) => {
         login(username, userInfo.password).then(response => {
           const data = response.data
-          setToken(data.token)
-          commit('SET_TOKEN', data.token)
+          console.log(data)
+          setToken(data.sessionToken)
+          commit('SET_TOKEN', data.sessionToken)
+
+          commit('SET_ROLES', 'admin')
+          commit('SET_NAME', data.username)
+          commit('SET_AVATAR', data.userPic)
+
           resolve()
         }).catch(error => {
           reject(error)
@@ -43,6 +49,7 @@ const user = {
     // 获取用户信息
     GetInfo({ commit, state }) {
       return new Promise((resolve, reject) => {
+        resolve()
         getInfo(state.token).then(response => {
           const data = response.data
           commit('SET_ROLES', data.roles)
@@ -58,14 +65,19 @@ const user = {
     // 登出
     LogOut({ commit, state }) {
       return new Promise((resolve, reject) => {
-        logout(state.token).then(() => {
-          commit('SET_TOKEN', '')
-          commit('SET_ROLES', [])
-          removeToken()
-          resolve()
-        }).catch(error => {
-          reject(error)
-        })
+        console.log("h");
+        commit('SET_TOKEN', '')
+        commit('SET_ROLES', [])
+        removeToken()
+        resolve()
+        // logout(state.token).then(() => {
+        //   commit('SET_TOKEN', '')
+        //   commit('SET_ROLES', [])
+        //   removeToken()
+        //   resolve()
+        // }).catch(error => {
+        //   reject(error)
+        // })
       })
     },
 
