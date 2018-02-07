@@ -9,17 +9,15 @@
     </el-dialog>
 
     <el-table :data="tableData" v-loading.body="listLoading" border style="width: 100%">
-      <el-table-column fixed prop="objectId" label="id" width="150">
+      <el-table-column fixed prop="objectId" label="id" width="150"></el-table-column>
+      <el-table-column prop="username" label="用户名"></el-table-column>
+      <el-table-column prop="province" label="省份" >
       </el-table-column>
-      <el-table-column prop="username" label="用户名" width="120">
+      <el-table-column prop="openid" label="openid" >
       </el-table-column>
-      <el-table-column prop="province" label="省份" width="120">
+      <el-table-column prop="updatedAt" label="更新时间">
       </el-table-column>
-      <el-table-column prop="openid" label="openid" width="300">
-      </el-table-column>
-      <el-table-column prop="updatedAt" label="更新时间" width="300">
-      </el-table-column>
-      <el-table-column prop="createdAt" label="加入时间" width="120">
+      <el-table-column prop="createdAt" label="加入时间">
       </el-table-column>
       <el-table-column fixed="right" label="操作" width="100">
         <template slot-scope="scope">
@@ -32,8 +30,6 @@
     <el-pagination background layout="prev, pager, next" @current-change="handleCurrentChange" @size-change="handleSizeChange"
                    :total="1000">
     </el-pagination>
-
-
 
   </div>
 </template>
@@ -61,9 +57,6 @@
           this.tableData = response.data.results
           this.listLoading = false
         })
-      },
-      kkk() {
-        console.log('val')
       }
     },
     created() {
