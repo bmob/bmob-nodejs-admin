@@ -1,4 +1,4 @@
-# Bmob后端云nodejs版本管理后台示例
+# Bmob后端云nodejs版本管理后台
 
 > 本管理后台，基于Bmob后端云、nodejs、VUE等技术研发
 
@@ -48,7 +48,7 @@ BC.initialize("你的Application ID", "你的REST API Key", "超级权限传入M
 ```
 
 ## 目录说明
-本项目保持 Vue 原生项目结构
+本项目保持 Vue 原生项目结构
 ```
 .
 ├── LICENSE
