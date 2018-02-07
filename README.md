@@ -1,12 +1,19 @@
-# vueAdmin-template
+# Bmob后端云nodejs版本管理后台示例
 
-> A minimal vue admin template with Element UI & axios & iconfont & permission control & lint
+> 本管理后台，基于Bmob后端云、nodejs、VUE等技术研发
 
-**Live demo:** http://panjiachen.github.io/vueAdmin-template
+**演示地址:** http://bmob.cn
 
-[中文文档](https://github.com/PanJiaChen/vueAdmin-template/blob/master/README-zh.md)
 
-## Build Setup
+## 相关文档：
+[Bmob 后端云nodejs 操作数据库文档](http://doc.bmob.cn/cloud_function/web/develop_doc/#_7)
+
+
+[目前本源码实现APi文档](https://github.com/bmob/bmob-nodejs-admin/blob/master/server/api_docs.md)
+
+## 项目运行:
+
+### 编译安装-前台
 
 ``` bash
 
@@ -26,16 +33,24 @@ npm run build
 npm run build --report
 ```
 
+### 编译安装-后台
+
+``` bash
+//进入server文件夹
+node app.js
+```
+
+
 ## Demo
 ![demo](https://github.com/PanJiaChen/PanJiaChen.github.io/blob/master/images/demo.gif)
 
 ## Extra
-If you want router permission && generate menu by user roles , you can use this branch [permission-control](https://github.com/PanJiaChen/vueAdmin-template/tree/permission-control)
+如果你想要路由器生成菜单的用户角色,您可以使用这个分支[权限控制](https://github.com/PanJiaChen/vueAdmin-template/tree/permission-control)，配合Bmob的`Acl`权限管理。
 
-## Related Project
- [vue-element-admin](https://github.com/PanJiaChen/vue-element-admin)
+## 相关项目
+ [bmob-nodejs-module](https://github.com/bmob/bmob-nodejs-module)
+ [vueAdmin-template](https://github.com/PanJiaChen/vueAdmin-template)
 
- [electron-vue-admin](https://github.com/PanJiaChen/electron-vue-admin)
 
 
 ## License
