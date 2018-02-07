@@ -40,7 +40,43 @@ npm run build --report
 node app.js
 ```
 
+### 修改为自己的Appid
+``` bash
+//进入server文件夹routes
+BC.initialize("你的Application ID", "你的REST API Key", "超级权限传入Master Key");
 
+```
+
+## 目录说明
+本项目保持 Vue 原生项目结构
+```
+.
+├── LICENSE
+├── README-zh.md
+├── README.md
+├── build
+├── config
+├── favicon.ico
+├── index.html
+├── node_modules    //前端依赖模块
+├── package-lock.json
+├── package.json
+├── server          //服务端目录
+│   ├── LICENSE
+│   ├── README.md
+│   ├── api
+│   ├── api_docs.md
+│   ├── app.js
+│   ├── lib
+│   ├── node_modules    //服务端依赖模块
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── public
+│   ├── routes
+│   └── views
+├── src
+└── static
+```
 ## Demo
 ![demo](https://github.com/PanJiaChen/PanJiaChen.github.io/blob/master/images/demo.gif)
 
