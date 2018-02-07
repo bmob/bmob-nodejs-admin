@@ -18,6 +18,7 @@ router.get('/users', (req, res, next) => {
 
 //获取单个用户信息
 router.get('/users/:id', (req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
     var modules = BC.getModules(BC);
     var db = modules.oData;
 
