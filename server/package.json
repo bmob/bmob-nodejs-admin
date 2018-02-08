@@ -3,10 +3,11 @@
     "version": "0.0.1",
     "private": true,
     "dependencies": {
-        "bmob": "^2.1.0",
+        "bmob-nodejs": "^2.2.0",
         "body-parser": "1.12.3",
         "bytes": "0.2.1",
         "cookie-signature": "1.0.6",
+        "errorhandler": "1.4.3",
         "express": "4.13.4",
         "express-domain-middleware": "0.1.0",
         "jade": ">= 0.0.1",

@@ -2,8 +2,9 @@
  * GET home page.
  */
 
-var BC = require('bmob');
-// var jwt = require('jsonwebtoken')
+
+var BC = require('bmob-nodejs');
+
 var express = require('express');
 var router = express.Router();
 

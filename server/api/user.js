@@ -1,8 +1,9 @@
 var express = require('express')
 var router = express.Router()
-var BC = require('bmob')
 var utils = require('../lib/utils')
 var jwt = require('jsonwebtoken')
+var BC = require('bmob-nodejs');
+// var jwt = require('jsonwebtoken')
 // var bcrypt = require('bcryptjs')
 
 // 获取全部用户信息
