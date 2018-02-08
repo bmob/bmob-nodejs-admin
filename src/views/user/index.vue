@@ -1,7 +1,6 @@
 <template>
   <div class="app-container">
 
-    
     <el-dialog title="详细信息" :visible.sync="dialogTableVisible">
       <div>
         <!-- 为了适应大家自定义的各种字段，这里用了循环显示所有字段 -->
@@ -14,9 +13,9 @@
               </el-col>
               <el-col :span="12">
                 <div class="grid-content bg-purple-light">
-                 <!-- {{ value }} -->
-                 <img :src="value" width="200" height="200" alt="">
-                  </div>
+                  <!-- {{ value }} -->
+                  <img :src="value" width="200" height="200" alt="">
+                </div>
               </el-col>
             </div>
             <div v-else>
@@ -47,11 +46,11 @@
       <el-table-column fixed="right" label="操作" width="100">
         <template slot-scope="scope">
           <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
-          <el-button type="text" size="small">编辑</el-button>
+          <el-button type="text" size="small">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
-
+    <div style="padding:10px"></div>
     <el-pagination background layout="prev, pager, next" @current-change="handleCurrentChange" @size-change="handleSizeChange" :total="1000">
     </el-pagination>
 
@@ -72,14 +71,20 @@ export default {
       this.dialogTableVisible = true
     },
     handleSizeChange(val) {
-      this.pagesize = val
+      // this.pagesize = val
+      // this.listQuery.page = val
+      // this.fetchData()
       console.log(`每页 ${val} 条`)
     },
     handleCurrentChange(val) {
       this.currentPage = val
       console.log(val)
+      this.listQuery.page = val
+      this.fetchData()
+      console.log(`每页 ${val} 条`)
     },
     fetchData() {
+      console.log("loading")
       this.listLoading = true
       getList(this.listQuery).then(response => {
         console.log(response.results)
@@ -94,7 +99,7 @@ export default {
   data() {
     return {
       listQuery: {},
-      info: [],
+      info: {},
       gridData: [
         {
           date: '2016-05-02',
