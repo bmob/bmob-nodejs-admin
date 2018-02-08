@@ -1,5 +1,5 @@
 import { login, getInfo } from '@/api/login'
-import { getToken, setToken, removeToken } from '@/utils/auth'
+import { getToken, setToken, removeToken, setAdminToken, removeAdminToken } from '@/utils/auth'
 
 const user = {
   state: {
@@ -34,7 +34,10 @@ const user = {
           console.log(data)
 
           setToken(data.sessionToken)
+          setAdminToken(data.adminSessionToken)
+
           commit('SET_TOKEN', data.sessionToken)
+          commit('SET_ADMIN_TOKEN', data.adminSessionToken)
 
           commit('SET_ROLES', 'admin')
           commit('SET_NAME', data.username)
@@ -70,6 +73,7 @@ const user = {
         commit('SET_TOKEN', '')
         commit('SET_ROLES', [])
         removeToken()
+        removeAdminToken()
         resolve()
         // logout(state.token).then(() => {
         //   commit('SET_TOKEN', '')
@@ -87,6 +91,7 @@ const user = {
       return new Promise(resolve => {
         commit('SET_TOKEN', '')
         removeToken()
+        removeAdminToken()
         resolve()
       })
     }

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { Message, MessageBox } from 'element-ui'
 import store from '../store'
-// import { getToken } from '@/utils/auth'
+import { getAdminToken } from '@/utils/auth'
 
 // 创建axios实例
 const service = axios.create({
@@ -12,7 +12,7 @@ const service = axios.create({
 // request拦截器
 service.interceptors.request.use(config => {
   if (store.getters.token) {
-    // config.headers['X-Token'] = getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
+    // config.headers['adminSessionToken'] = getAdminToken() // 让每个请求携带自定义token 请根据实际情况自行修改
     // config.headers['Content-Type'] = 'application/x-www-form-urlencoded' // 让每个请求携带自定义token 请根据实际情况自行修改
   }
   return config
