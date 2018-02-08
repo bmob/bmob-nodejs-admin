@@ -1,11 +1,36 @@
 <template>
   <div class="app-container">
 
-    <!-- Table -->
-    <el-button type="text" @click="dialogTableVisible = true">打开嵌套表格的 Dialog</el-button>
-
+    
     <el-dialog title="详细信息" :visible.sync="dialogTableVisible">
-      <span>这是一段信息</span>
+      <div>
+        <!-- 为了适应大家自定义的各种字段，这里用了循环显示所有字段 -->
+        <div id="v-for-object" class="demo">
+
+          <el-row v-for="(value, key) in info">
+            <div v-if="key === 'userPic'">
+              <el-col :span="12">
+                <div class="grid-content bg-purple">{{ key }}</div>
+              </el-col>
+              <el-col :span="12">
+                <div class="grid-content bg-purple-light">
+                 <!-- {{ value }} -->
+                 <img :src="value" width="200" height="200" alt="">
+                  </div>
+              </el-col>
+            </div>
+            <div v-else>
+              <el-col :span="12">
+                <div class="grid-content bg-purple">{{ key }}</div>
+              </el-col>
+              <el-col :span="12">
+                <div class="grid-content bg-purple-light">{{ value }}</div>
+              </el-col>
+            </div>
+          </el-row>
+          <span>为了适应大家自定义的各种字段，这里用了循环显示所有字段. 大家可以自己控制下</span>
+        </div>
+      </div>
     </el-dialog>
 
     <el-table :data="tableData" v-loading.body="listLoading" border style="width: 100%">
@@ -42,6 +67,7 @@ export default {
       const objectId = row.objectId
       getInfo(objectId).then(response => {
         console.log(response)
+        this.info = response
       })
       this.dialogTableVisible = true
     },
