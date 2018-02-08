@@ -11,9 +11,9 @@
     <el-table :data="tableData" v-loading.body="listLoading" border style="width: 100%">
       <el-table-column fixed prop="objectId" label="id" width="150"></el-table-column>
       <el-table-column prop="username" label="用户名"></el-table-column>
-      <el-table-column prop="province" label="省份" >
+      <el-table-column prop="province" label="省份">
       </el-table-column>
-      <el-table-column prop="openid" label="openid" >
+      <el-table-column prop="openid" label="openid">
       </el-table-column>
       <el-table-column prop="updatedAt" label="更新时间">
       </el-table-column>
@@ -27,64 +27,74 @@
       </el-table-column>
     </el-table>
 
-    <el-pagination background layout="prev, pager, next" @current-change="handleCurrentChange" @size-change="handleSizeChange"
-                   :total="1000">
+    <el-pagination background layout="prev, pager, next" @current-change="handleCurrentChange" @size-change="handleSizeChange" :total="1000">
     </el-pagination>
 
   </div>
 </template>
 
 <script>
-  import { getList } from '@/api/user'
-  export default {
-    methods: {
-      handleClick(row) {
-        console.log(row)
-        this.dialogTableVisible = true
-      },
-      handleSizeChange(val) {
-        this.pagesize = val
-        console.log(`每页 ${val} 条`)
-      },
-      handleCurrentChange(val) {
-        this.currentPage = val
-        console.log(val)
-      },
-      fetchData() {
-        this.listLoading = true
-        getList(this.listQuery).then(response => {
-          console.log(response.data.results)
-          this.tableData = response.data.results
-          this.listLoading = false
-        })
-      }
+import { getInfo, getList } from '@/api/user'
+export default {
+  methods: {
+    handleClick(row) {
+      console.log(row)
+      const objectId = row.objectId
+      getInfo(objectId).then(response => {
+        console.log(response)
+      })
+      this.dialogTableVisible = true
     },
-    created() {
-      this.fetchData()
+    handleSizeChange(val) {
+      this.pagesize = val
+      console.log(`每页 ${val} 条`)
     },
-    data() {
-      return {
-        gridData: [{
+    handleCurrentChange(val) {
+      this.currentPage = val
+      console.log(val)
+    },
+    fetchData() {
+      this.listLoading = true
+      getList(this.listQuery).then(response => {
+        console.log(response.results)
+        this.tableData = response.results
+        this.listLoading = false
+      })
+    }
+  },
+  created() {
+    this.fetchData()
+  },
+  data() {
+    return {
+      listQuery: {},
+      info: [],
+      gridData: [
+        {
           date: '2016-05-02',
           name: '王小虎',
           address: '上海市普陀区金沙江路 1518 弄'
-        }, {
+        },
+        {
           date: '2016-05-04',
           name: '王小虎',
           address: '上海市普陀区金沙江路 1518 弄'
-        }, {
+        },
+        {
           date: '2016-05-01',
           name: '王小虎',
           address: '上海市普陀区金沙江路 1518 弄'
-        }, {
+        },
+        {
           date: '2016-05-03',
           name: '王小虎',
           address: '上海市普陀区金沙江路 1518 弄'
-        }],
-        dialogTableVisible: false,
-        formLabelWidth: '120px',
-        tableData: []
-      }
+        }
+      ],
+      dialogTableVisible: false,
+      formLabelWidth: '120px',
+      tableData: []
     }
   }
+}
 </script>

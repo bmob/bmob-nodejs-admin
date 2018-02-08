@@ -37,12 +37,56 @@
 </template>
 
 <script>
-import { getList } from '@/api/table'
-
 export default {
   data() {
     return {
-      list: null,
+      list: [
+        {
+          id: '140000198609091115',
+          title:
+            'Aoyxpji yttqm wsbpftj iivoji jdio csktpbr wvwowjjzb ibsvgkmc qctswy rdhknvwso dpqpy tyoeckwb phgc qfokydnpo nhjaif tpqowy sfftchcj.',
+          status: 'deleted',
+          author: 'name',
+          display_time: '2011-11-28 02:04:48',
+          pageviews: 4824
+        },
+        {
+          id: '430000200804296633',
+          title:
+            'Avdnxi mqcmyz ydmlm aicqqsbgn lhzc wmvrl cpfrx lxzzvfkib vgqptk qfjfbwc dmnndl tcpkwfbg lqkix mqbtt dvgbh.',
+          status: 'published',
+          author: 'name',
+          display_time: '2003-11-04 04:14:08',
+          pageviews: 1642
+        },
+        {
+          id: '450000197410087387',
+          title:
+            'Drhiw vqci dhimqqhq hnobz xvmid jhvhzsde igz ebalneb qajxrhl xiixze flojuvmpd.',
+          status: 'deleted',
+          author: 'name',
+          display_time: '1990-07-18 10:52:20',
+          pageviews: 3849
+        },
+        {
+          id: '310000199004107619',
+          title:
+            'Wvh ajigep uruvm ctthnewit sompfheld fnhltmeh dxg bdtegup notosw cgoybbbc pgtr ree eptu gwiswmu potrlt fcvzc vjk.',
+          status: 'draft',
+          author: 'name',
+          display_time: '2007-03-04 09:56:34',
+          pageviews: 968
+        },
+        {
+          id: '640000200503120422',
+          title:
+            'Fdr ivot povlwlaf tdeiagdvg cxrhc polcsijhx epkgjzwg rpwtzd orspn qcctvkek ehiu wvrvd qip uzhgonfrq nljnreq.',
+          status: 'deleted',
+          author: 'name',
+          display_time: '1973-10-17 04:25:09',
+          pageviews: 797
+        }
+      ],
       listLoading: true
     }
   },
@@ -61,11 +105,11 @@ export default {
   },
   methods: {
     fetchData() {
-      this.listLoading = true
-      getList(this.listQuery).then(response => {
-        this.list = response.data.items
-        this.listLoading = false
-      })
+      this.listLoading = false
+      // getList(this.listQuery).then(response => {
+      //   this.list = response.data.items
+      //   this.listLoading = false
+      // })
     }
   }
 }

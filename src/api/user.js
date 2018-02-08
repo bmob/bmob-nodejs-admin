@@ -7,3 +7,10 @@ export function getList(params) {
     params
   })
 }
+
+export function getInfo(params) {
+  return request({
+    url: '/users/' + params,
+    method: 'get'
+  })
+}
