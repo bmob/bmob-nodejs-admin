@@ -1,19 +1,56 @@
 var express = require('express')
 var router = express.Router()
-var BC = require('bmob');
-var utils = require('../lib/utils');
-// var jwt = require('jsonwebtoken')
+var BC = require('bmob')
+var utils = require('../lib/utils')
+var jwt = require('jsonwebtoken')
 // var bcrypt = require('bcryptjs')
 
 // 获取全部用户信息
 router.get('/users', (req, res, next) => {
     var modules = BC.getModules(BC);
     var db = modules.oData;
+    //token验证,所有不是登录的请求都需要验证token
+    // if(req.params[0] != "/login"){
+    //  var token = req.headers.adminsessiontoken
+    //     try{
+    //         var decode = jwt.verify(token, 'bmob-nodejs-admin')
+    //     }
+    //     catch(e)
+    //     {
+    //         res.send(e);
+    //     }
+    // }
 
     db.getAllUser(function(err,data){         //回调函数
         res.send(JSON.parse(data));
     });
 })
+
+// 获取用户列表信息
+router.get('/usersList', (req, res, next) => {
+    var modules = BC.getModules(BC);
+    var db = modules.oData;
+
+    var where = req.query.where ? JSON.parse(req.query.where) : {};
+    var order = req.query.order ? JSON.parse(req.query.order) : "-createdAt";   //默认根据时间降序
+    var limit = req.query.limit ? req.query.limit : 10;                         //默认10条
+    var page  = req.query.page  ? req.query.page : 1;                           //默认第1页
+    var skip  = (page-1)*limit;
+
+    db.find({
+        "table":"_User",                        //表名
+        "where":where,                          //查询条件是一个JSON object
+        "order":order,                          //排序列表，[-]字段名称,-表示降序，默认为升序
+        "limit":limit,                          //limit大小，一页返回多少条记录，默认为0
+        "skip":skip,                            //skip,分页offset，(page-1)*limit
+        "count":1                               //count,只返回符合条件的记录总数
+    },function(err,data){                       //回调函数
+        res.send(JSON.parse(data));
+    });
+
+})
+
+
 
 //获取单个用户信息
 router.get('/users/:id', (req, res, next) => {
@@ -40,7 +77,18 @@ router.post('/login', (req, res, next) => {
         "username":username,              //登录用户名
         "password":password,              //用户密码
     },function(err,data){                 //回调函数
-        res.send(JSON.parse(data));
+        var userToken = {
+            name: data.username,
+            id: data.objectId
+          }
+        // 密钥
+        var secret = 'bmob-nodejs-admin'
+        var token = jwt.sign(userToken, secret)
+        var data = JSON.parse(data);
+        if(data.code != 101){
+            data.adminSessionToken = token
+        }
+        res.send(data);
     });
 })
 

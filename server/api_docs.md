@@ -96,11 +96,20 @@ JSON示例
 
 #### 地址
 
-http://127.0.0.1:8080/users
+http://127.0.0.1:8080/usersList
 
 #### 请求
 
 * 请求方式 GET
+* 请求参数
+
+| 名称      | 必填 | 类型     | 说明   |
+|:--------|:---|:-------|:-----|
+| where   | 否  | string | 查询条件，例如：where={"username":"aaa"}|
+| order | 否  | string | 排序(默认时间排序)，例如 order=-createdAt|
+| limit | 否  | string | 显示页数(默认值为10) |
+|  page | 否  | string | 页数(默认值为1) |
+
 
 #### 响应
 
