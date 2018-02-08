@@ -2,7 +2,7 @@
  * GET home page.
  */
 
-var BC = require('bmob');
+var BC = require('bmob-nodejs');
 
 var express = require('express');
 var router = express.Router();

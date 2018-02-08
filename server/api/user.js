@@ -1,6 +1,6 @@
 var express = require('express')
 var router = express.Router()
-var BC = require('bmob');
+var BC = require('bmob-nodejs');
 var utils = require('../lib/utils');
 // var jwt = require('jsonwebtoken')
 // var bcrypt = require('bcryptjs')
