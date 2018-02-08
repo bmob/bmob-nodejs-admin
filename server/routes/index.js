@@ -7,7 +7,7 @@ var BC = require('bmob-nodejs');
 var express = require('express');
 var router = express.Router();
 
-BC.initialize('39ee83f92ff3a195130596a4eaec5ddf', 'a1223fca87f5d229953817f5c2493446', '0b75514a665a8762e6d14329c34a41f7');
+BC.initialize('89d05ff35e3d88c42564722df6f44a3a', 'f66acc8498ed2381cea1edf390b428bc', 'b02d2789cacf5424557d47b34cc13df5');
 
 router.all('*',function (req, res, next) {
 	res.header('Access-Control-Allow-Origin', '*');

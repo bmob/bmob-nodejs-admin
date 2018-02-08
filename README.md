@@ -37,6 +37,7 @@ npm run build --report
 
 ``` bash
 //进入server文件夹
+npm install
 node app.js
 ```
 
