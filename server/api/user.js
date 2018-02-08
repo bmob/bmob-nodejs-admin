@@ -7,7 +7,6 @@ var utils = require('../lib/utils');
 
 // 获取全部用户信息
 router.get('/users', (req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
     var modules = BC.getModules(BC);
     var db = modules.oData;
 
@@ -18,7 +17,6 @@ router.get('/users', (req, res, next) => {
 
 //获取单个用户信息
 router.get('/users/:id', (req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
     var modules = BC.getModules(BC);
     var db = modules.oData;
 
@@ -32,7 +30,6 @@ router.get('/users/:id', (req, res, next) => {
 
 //登录
 router.post('/login', (req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
     var modules = BC.getModules(BC);
     var db = modules.oData;
 
@@ -100,17 +97,6 @@ router.delete('/users/:id', (req, res, next) => {
     });
 })
 
-router.all('*',function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
-    res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
-  
-    if (req.method == 'OPTIONS') {
-      res.send(200); /让options请求快速返回/
-    }
-    else {
-      next();
-    }
-  });
+
 
 module.exports = router
