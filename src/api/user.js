@@ -14,3 +14,10 @@ export function getInfo(params) {
     method: 'get'
   })
 }
+
+export function del(params) {
+  return request({
+    url: '/users/' + params,
+    method: 'delete'
+  })
+}

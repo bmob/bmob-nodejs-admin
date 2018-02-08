@@ -27,7 +27,7 @@
               </el-col>
             </div>
           </el-row>
-          <span>为了适应大家自定义的各种字段，这里用了循环显示所有字段. 大家可以自己控制下</span>
+          <span style="color:red;">为了适应大家自定义的各种字段，这里用了循环显示所有字段. 大家可以自己控制下</span>
         </div>
       </div>
     </el-dialog>
@@ -46,19 +46,19 @@
       <el-table-column fixed="right" label="操作" width="100">
         <template slot-scope="scope">
           <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
-          <el-button type="text" size="small">删除</el-button>
+          <el-button @click="handleDel(scope.row)" type="text" size="small">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
     <div style="padding:10px"></div>
-    <el-pagination background layout="prev, pager, next" @current-change="handleCurrentChange" @size-change="handleSizeChange" :total="1000">
+    <el-pagination background layout="prev, pager, next" @current-change="handleCurrentChange" @size-change="handleSizeChange" :total="count">
     </el-pagination>
 
   </div>
 </template>
 
 <script>
-import { getInfo, getList } from '@/api/user'
+import { del, getInfo, getList } from '@/api/user'
 export default {
   methods: {
     handleClick(row) {
@@ -69,6 +69,15 @@ export default {
         this.info = response
       })
       this.dialogTableVisible = true
+    },
+    handleDel(row) {
+      console.log(row)
+      const objectId = row.objectId
+      del(objectId).then(response => {
+        console.log(response)
+        this.info = response
+        // this.$message('submit!')
+      })
     },
     handleSizeChange(val) {
       // this.pagesize = val
@@ -84,11 +93,12 @@ export default {
       console.log(`每页 ${val} 条`)
     },
     fetchData() {
-      console.log("loading")
+      console.log('loading')
       this.listLoading = true
       getList(this.listQuery).then(response => {
         console.log(response.results)
         this.tableData = response.results
+        this.count = response.count
         this.listLoading = false
       })
     }
@@ -98,7 +108,8 @@ export default {
   },
   data() {
     return {
-      listQuery: {},
+      count: 100,
+      listQuery: { limit: 8, count: 1 },
       info: {},
       gridData: [
         {
