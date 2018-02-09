@@ -16,25 +16,14 @@
         <div id="v-for-object" class="demo">
 
           <el-row v-for="(value, key) in info">
-            <div v-if="key === 'userPic'">
-              <el-col :span="12">
-                <div class="grid-content bg-purple">{{ key }}</div>
-              </el-col>
-              <el-col :span="12">
-                <div class="grid-content bg-purple-light">
-                  <!-- {{ value }} -->
-                  <img :src="value" width="200" height="200" alt="">
-                </div>
-              </el-col>
-            </div>
-            <div v-else>
-              <el-col :span="12">
-                <div class="grid-content bg-purple">{{ key }}</div>
-              </el-col>
-              <el-col :span="12">
-                <div class="grid-content bg-purple-light">{{ value }}</div>
-              </el-col>
-            </div>
+
+            <el-col :span="12">
+              <div class="grid-content bg-purple">{{ key }}</div>
+            </el-col>
+            <el-col :span="12">
+              <div class="grid-content bg-purple-light">{{ value }}</div>
+            </el-col>
+
           </el-row>
           <span style="color:red;">为了适应大家自定义的各种字段，这里用了循环显示所有字段. 大家可以自己控制下</span>
         </div>
@@ -43,10 +32,8 @@
 
     <el-table :data="tableData" v-loading.body="listLoading" border style="width: 100%">
       <el-table-column fixed prop="objectId" label="id" width="150"></el-table-column>
-      <el-table-column prop="username" label="用户名"></el-table-column>
-      <el-table-column prop="mobilePhoneNumber" :formatter="formatterPhone" label="手机号">
-      </el-table-column>
-      <el-table-column prop="openid" label="openid">
+      <el-table-column prop="contact" label="联系方式"></el-table-column>
+      <el-table-column prop="content" label="内容">
       </el-table-column>
       <el-table-column prop="updatedAt" label="更新时间">
       </el-table-column>
@@ -109,6 +96,7 @@ export default {
           del(objectId).then(response => {
             console.log(response)
             this.info = response
+            this.fetchData()
             // this.$message('submit!')
           })
         })
