@@ -34,10 +34,10 @@ const user = {
           console.log(data)
 
           setToken(data.sessionToken)
-          // setAdminToken(data.adminSessionToken)
+          setAdminToken(data.adminSessionToken)
 
           commit('SET_TOKEN', data.sessionToken)
-          // commit('SET_ADMIN_TOKEN', data.adminSessionToken)
+          commit('SET_ADMIN_TOKEN', data.adminSessionToken)
 
           commit('SET_ROLES', 'admin')
           commit('SET_NAME', data.username)

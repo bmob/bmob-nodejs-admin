@@ -3,7 +3,6 @@ var router = express.Router()
 var utils = require('../lib/utils')
 var jwt = require('jsonwebtoken')
 var BC = require('bmob-nodejs');
-// var jwt = require('jsonwebtoken')
 // var bcrypt = require('bcryptjs')
 
 // 获取全部用户信息
@@ -68,15 +67,15 @@ router.post('/login', (req, res, next) => {
         "username":username,              //登录用户名
         "password":password,              //用户密码
     },function(err,data){                 //回调函数
-        var userToken = {
-            name: data.username,
-            id: data.objectId
-          }
-        // 密钥
-        var secret = 'bmob-nodejs-admin'
-        var token = jwt.sign(userToken, secret)
-        var data = JSON.parse(data);
         if(data.code != 101){
+            var userToken = {
+                name: data.username,
+                id: data.objectId
+            }
+            // 密钥
+            var secret = 'bmob-nodejs-admin'
+            var token = jwt.sign(userToken, secret)
+            var data = JSON.parse(data);
             data.adminSessionToken = token
         }
         res.send(data);
