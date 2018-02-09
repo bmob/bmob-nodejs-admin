@@ -61,7 +61,7 @@
       </el-table-column>
     </el-table>
     <div style="padding:10px"></div>
-    <el-pagination background layout="prev, pager, next" @current-change="handleCurrentChange" @size-change="handleSizeChange" :total="count">
+    <el-pagination background layout="total,prev, pager, next" @current-change="handleCurrentChange" @size-change="handleSizeChange" :total="count">
     </el-pagination>
 
     <el-dialog title="提示" :visible.sync="dialogVisible" width="30%" @before-close="dialogVisible = false">
@@ -109,7 +109,11 @@ export default {
           del(objectId).then(response => {
             console.log(response)
             this.info = response
-            // this.$message('submit!')
+            this.fetchData()
+            this.$message({
+              message: '恭喜你，删除成功',
+              type: 'success'
+            })
           })
         })
         .catch(_ => {})

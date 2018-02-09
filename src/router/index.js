@@ -54,7 +54,7 @@ const router = new Router({
     {
       path: '/example',
       component: Layout,
-      redirect: '/example/table',
+      redirect: '/example/user',
       name: 'Example',
       meta: {
         title: '概览',
@@ -74,7 +74,7 @@ const router = new Router({
           name: 'Table',
           component: () => import('@/views/table/index'),
           meta: {
-            title: 'table', icon: 'table'
+            title: '表格', icon: 'table'
           }
         },
         {
@@ -82,7 +82,7 @@ const router = new Router({
           name: 'Tree',
           component: () => import('@/views/tree/index'),
           meta: {
-            title: 'Tree', icon: 'tree'
+            title: '数菜单', icon: 'tree'
           }
         }
       ]
@@ -112,7 +112,7 @@ const router = new Router({
           name: 'Form',
           component: () => import('@/views/form/index'),
           meta: {
-            title: 'Form', icon: 'form'
+            title: '表单', icon: 'form'
           }
         }
       ]
