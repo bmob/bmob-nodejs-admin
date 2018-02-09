@@ -5,7 +5,7 @@ var BC = require('bmob-nodejs');
 // var bcrypt = require('bcryptjs')
 
 // 获取用户列表信息
-router.get('feedbackList', (req, res, next) => {
+router.get('/feedbackList', (req, res, next) => {
     var modules = BC.getModules(BC);
     var db = modules.oData;
 
