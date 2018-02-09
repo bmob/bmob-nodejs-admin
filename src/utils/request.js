@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { Message, MessageBox } from 'element-ui'
 import store from '../store'
-import { getAdminToken } from '@/utils/auth'
+// import { getAdminToken } from '@/utils/auth'
 
 // 创建axios实例
 const service = axios.create({
