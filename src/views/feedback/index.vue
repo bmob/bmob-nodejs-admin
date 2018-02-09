@@ -76,7 +76,7 @@
 </template>
 
 <script>
-import { del, getInfo, getList } from '@/api/user'
+import { del, getInfo, getList } from '@/api/feedback'
 export default {
   methods: {
     formatterPhone(row, column, cellValue) {

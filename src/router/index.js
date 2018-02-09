@@ -89,6 +89,21 @@ const router = new Router({
     },
 
     {
+      path: '/feedback',
+      component: Layout,
+      children: [
+        {
+          path: 'index',
+          name: 'Feedback',
+          component: () => import('@/views/feedback/index'),
+          meta: {
+            title: '反馈管理', icon: 'form'
+          }
+        }
+      ]
+    },
+
+    {
       path: '/form',
       component: Layout,
       children: [
