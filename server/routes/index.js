@@ -7,13 +7,9 @@ var BC = require('bmob-nodejs');
 var jwt = require('jsonwebtoken')
 var express = require('express');
 var router = express.Router();
-var app = express();
 
-var userRoutes = require('../api/user');
-var feedbackRoutes = require('../api/feedback');
-
-app.use('/', userRoutes);
-app.use('/', feedbackRoutes);
+router.use('/', require('../api/user'));
+router.use('/', require('../api/feedback'));
 
 BC.initialize('39ee83f92ff3a195130596a4eaec5ddf', 'a1223fca87f5d229953817f5c2493446', '0b75514a665a8762e6d14329c34a41f7');
 
