@@ -30,14 +30,14 @@ const user = {
       const username = userInfo.username.trim()
       return new Promise((resolve, reject) => {
         login(username, userInfo.password).then(response => {
-          const data = response.data
+          const data = response
           console.log(data)
 
           setToken(data.sessionToken)
-          setAdminToken(data.adminSessionToken)
+          // setAdminToken(data.adminSessionToken)
 
           commit('SET_TOKEN', data.sessionToken)
-          commit('SET_ADMIN_TOKEN', data.adminSessionToken)
+          // commit('SET_ADMIN_TOKEN', data.adminSessionToken)
 
           commit('SET_ROLES', 'admin')
           commit('SET_NAME', data.username)
