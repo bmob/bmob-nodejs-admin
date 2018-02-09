@@ -10,17 +10,7 @@ var BC = require('bmob-nodejs');
 router.get('/users', (req, res, next) => {
     var modules = BC.getModules(BC);
     var db = modules.oData;
-    //token验证,所有不是登录的请求都需要验证token
-    // if(req.params[0] != "/login"){
-    //  var token = req.headers.adminsessiontoken
-    //     try{
-    //         var decode = jwt.verify(token, 'bmob-nodejs-admin')
-    //     }
-    //     catch(e)
-    //     {
-    //         res.send(e);
-    //     }
-    // }
+
 
     db.getAllUser(function(err,data){         //回调函数
         res.send(JSON.parse(data));
