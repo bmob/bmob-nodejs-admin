@@ -23,7 +23,7 @@
               <el-col :span="12">
                 <div class="grid-content bg-purple-light">
                   <!-- {{ value }} -->
-                  <img :src="value" width="200" height="200" alt="">
+                  <img class="to" :src="value" width="200" height="200" alt="">
                 </div>
               </el-col>
             </div>
@@ -42,8 +42,16 @@
     </el-dialog>
 
     <el-table :data="tableData" v-loading.body="listLoading" border style="width: 100%">
-      <el-table-column fixed prop="objectId" label="id" width="150"></el-table-column>
+      
+      <el-table-column fixed prop="objectId" label="唯一Id" width="150"></el-table-column>
+        <el-table-column label="微信头像">
+        <template slot-scope="scope">
+          <img class="to" :src="scope.row.userPic" :formatter="formatterUserPic" width="85" height="85" alt="">
+        </template>
+      </el-table-column>
       <el-table-column prop="username" label="用户名"></el-table-column>
+    
+      <el-table-column prop="nickName" label="微信昵称"></el-table-column>
       <el-table-column prop="mobilePhoneNumber" :formatter="formatterPhone" label="手机号">
       </el-table-column>
       <el-table-column prop="openid" label="openid">
@@ -52,9 +60,10 @@
       </el-table-column>
       <el-table-column prop="createdAt" label="加入时间">
       </el-table-column>
-      <el-table-column fixed="right" label="操作" width="100">
+      <el-table-column fixed="right" label="操作" width="150">
         <template slot-scope="scope">
           <el-button @click="handleClick(scope.row,scope)" type="text" size="small">查看</el-button>
+          <el-button @click="handleEdit(scope.row)" type="text" size="small">编辑</el-button>
           <el-button @click="handleDel(scope.row)" type="text" size="small">删除</el-button>
 
         </template>
@@ -85,6 +94,12 @@ export default {
       }
       return cellValue
     },
+    formatterUserPic(row, column, cellValue) {
+      if (cellValue === '') {
+        return 'https://wx.qlogo.cn/mmopen/vi_32/aFAYPyw7ywCQ2YgHicEgibpSxmHNCSDhibXEX6wsopgQ21RT7oYX6xNsebSyysKhoNrvicogAI4piaUhLX0hyM2pjWw/0'
+      }
+      return cellValue
+    },
     searchRow() {
       console.log(this.input5)
       this.listQuery.where = {}
@@ -92,6 +107,13 @@ export default {
         this.listQuery.where = { username: this.input5 }
       }
       this.fetchData()
+    },
+    handleEdit(row) {
+      const objectId = row.objectId
+      // this.$router.push({ path: 'datail', params:{id: objectId }})
+      this.$router.push({ name: 'Datail', params: { id: objectId } })
+      // this.$router.go({name: 'user', params: {userId: 1}});
+      console.log(objectId)
     },
     handleClick(row) {
       // console.log(row,e)
@@ -128,6 +150,7 @@ export default {
       this.currentPage = val
       console.log(val)
       this.listQuery.page = val
+      // this.tableData = []
       this.fetchData()
       console.log(`每页 ${val} 条`)
     },
@@ -191,5 +214,8 @@ export default {
 }
 .input-with-select .el-input-group__prepend {
   background-color: #fff;
+}
+.to{border-radius:100px;
+ box-shadow: 2px 2px 2px #ccc;   
 }
 </style>

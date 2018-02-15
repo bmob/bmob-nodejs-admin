@@ -21,3 +21,12 @@ export function del(params) {
     method: 'delete'
   })
 }
+
+// 修改用户信息
+export function edit(id, params) {
+  return request({
+    url: '/users/' + id,
+    method: 'put',
+    data: params
+  })
+}

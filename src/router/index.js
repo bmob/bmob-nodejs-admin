@@ -38,7 +38,6 @@ const router = new Router({
       component: () => import('@/views/404'),
       hidden: true
     },
-
     {
       path: '/',
       component: Layout,
@@ -50,24 +49,42 @@ const router = new Router({
         component: () => import('@/views/dashboard/index')
       }]
     },
-
     {
-      path: '/example',
+      path: '/dashboard',
       component: Layout,
-      redirect: '/example/user',
-      name: 'Example',
+      children: [{
+        path: 'index',
+        name: 'Dashboard',
+        component: () => import('@/views/dashboard/index'),
+        meta: {
+          title: '概况', icon: 'table'
+        }
+      }]
+    },
+   
+    {
+      path: '/user',
+      component: Layout,
+      redirect: '/user/list',
+      name: 'User',
       meta: {
-        title: '概览',
+        title: '用户',
         icon: 'example'
       },
       children: [
         {
-          path: 'user',
-          name: 'User',
+          path: 'list',
+          name: 'List',
           component: () => import('@/views/user/index'),
           meta: {
             title: '用户列表', icon: 'table'
           }
+        },
+        {
+          path: 'datail/:id',
+          name: 'Datail',
+          component: () => import('@/views/user/datail'),
+          hidden: true
         },
         {
           path: 'table',

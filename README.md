@@ -2,8 +2,9 @@
 
 > 本管理后台，基于Bmob后端云、nodejs、VUE等技术研发
 
-**演示地址:** http://bmob.cn
-
+## **演示地址:** https://node.bmobcloud.com
+* 用户名：admin
+* 密码：admin
 
 ## 相关文档：
 [Bmob 后端云nodejs 操作数据库文档](http://doc.bmob.cn/cloud_function/web/develop_doc/#_7)

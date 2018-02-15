@@ -96,6 +96,8 @@ export default {
           del(objectId).then(response => {
             console.log(response)
             this.info = response
+            this.tableData = []
+            this.count = 0
             this.fetchData()
             this.$message({
               message: '恭喜你，删除成功',
