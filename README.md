@@ -92,6 +92,6 @@ BC.initialize("你的Application ID", "你的REST API Key", "超级权限传入M
 
 
 ## License
-[MIT](https://github.com/PanJiaChen/vueAdmin-template/blob/master/LICENSE) license.
+[MIT](https://github.com/bmob/bmob-nodejs-admin/blob/master/LICENSE) license.
 
-Copyright (c) 2017-present PanJiaChen
+Copyright (c) 2017-present Bmob
