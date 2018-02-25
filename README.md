@@ -80,7 +80,7 @@ BC.initialize("你的Application ID", "你的REST API Key", "超级权限传入M
 └── static
 ```
 ## Demo
-![demo](https://github.com/PanJiaChen/PanJiaChen.github.io/blob/master/images/demo.gif)
+![demo](https://github.com/bmob/bmob-nodejs-admin/blob/master/demo.gif)
 
 ## Extra
 如果你想要路由器生成菜单的用户角色,您可以使用这个分支[权限控制](https://github.com/PanJiaChen/vueAdmin-template/tree/permission-control)，配合Bmob的`Acl`权限管理。

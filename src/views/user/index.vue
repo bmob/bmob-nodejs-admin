@@ -3,8 +3,10 @@
 
     <div style="padding-bottom: 15px;width:500px;">
       <el-input placeholder="请输入内容" v-model="input5" class="input-with-select">
-        <el-select v-model="select" slot="prepend" placeholder="请选择">
-          <el-option label="用户名" value="1"></el-option>
+        <el-select v-model="select" slot="prepend" placeholder="用户名">
+          <el-option label="用户名" value="username"></el-option>
+          <el-option label="微信昵称" value="nickName"></el-option>
+          <el-option label="手机号" value="mobilePhoneNumber"></el-option>
         </el-select>
         <el-button slot="append" @click="searchRow()" icon="el-icon-search"></el-button>
       </el-input>
@@ -42,15 +44,15 @@
     </el-dialog>
 
     <el-table :data="tableData" v-loading.body="listLoading" border style="width: 100%">
-      
+
       <el-table-column fixed prop="objectId" label="唯一Id" width="150"></el-table-column>
-        <el-table-column label="微信头像">
+      <el-table-column label="微信头像">
         <template slot-scope="scope">
           <img class="to" :src="scope.row.userPic" :formatter="formatterUserPic" width="85" height="85" alt="">
         </template>
       </el-table-column>
       <el-table-column prop="username" label="用户名"></el-table-column>
-    
+
       <el-table-column prop="nickName" label="微信昵称"></el-table-column>
       <el-table-column prop="mobilePhoneNumber" :formatter="formatterPhone" label="手机号">
       </el-table-column>
@@ -101,11 +103,18 @@ export default {
       return cellValue
     },
     searchRow() {
-      console.log(this.input5)
       this.listQuery.where = {}
       if (this.input5) {
-        this.listQuery.where = { username: this.input5 }
+        let s = this.select
+        if (s === 'nickName') {
+          this.listQuery.where = { nickName: this.input5 }
+        } else if (s === 'mobilePhoneNumber') {
+          this.listQuery.where = { mobilePhoneNumber: this.input5 }
+        } else {
+          this.listQuery.where = { username: this.input5 }
+        }
       }
+      console.log(this.input5, this.select, this.listQuery.where)
       this.fetchData()
     },
     handleEdit(row) {
@@ -215,7 +224,8 @@ export default {
 .input-with-select .el-input-group__prepend {
   background-color: #fff;
 }
-.to{border-radius:100px;
- box-shadow: 2px 2px 2px #ccc;   
+.to {
+  border-radius: 100px;
+  box-shadow: 2px 2px 2px #ccc;
 }
 </style>
